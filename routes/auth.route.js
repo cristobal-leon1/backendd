@@ -1,6 +1,6 @@
-import express from 'express';
+import { Router } from 'express';
 import { login, register } from '../controllers/auth.controller.js';
-const router = express.Router(); 
+const router = Router(); 
 import { body } from 'express-validator';
 import { validationResultExpress } from '../middlewares/validationResultExpress.js';
 
@@ -12,12 +12,6 @@ router.post('/register', [
     body('password', 'minimo 6 caracteers')
         .trim()
         .isLength({ min: 6 })
-        ,
-    body('password', 'Formato de password incorrecta')
-        .custom((value, {req}) => {
-            if(value !== req.body.repassword) throw new Error(' no coinciden las contraseñas ')
-            return value;
-        })
 ],
 validationResultExpress,
 register)
