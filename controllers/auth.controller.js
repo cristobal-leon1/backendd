@@ -1,5 +1,6 @@
 import { User } from '../models/User.js';
 import jwt from 'jsonwebtoken';
+import { generateToken } from '../utils/tokenManager.js';
 
 
 export const register = async (req, res) => {
@@ -32,9 +33,9 @@ export const login = async (req, res) => {
         if(!respuestaPW) return res.status(400).json({ error:"credenciales incorrectas"})
 
         //generar token jwt
-        const token = jwt.sign({ udi: user._id }, process.env.JWT_SECRET);
+        const {token, expiresIn} = generateToken( user.id)
 
-        res.json({ token })
+        res.json({ token, expiresIn })
     } catch(error) {
         console.log(error);
 
