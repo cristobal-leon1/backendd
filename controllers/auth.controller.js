@@ -43,3 +43,11 @@ export const login = async (req, res) => {
 
 }
 
+export const infoUser = async (req, res) => {
+    try {
+
+    } catch(error) {
+        console.log(error)
+    }
+    res.json( { user: "correro@correo.com"});
+}
