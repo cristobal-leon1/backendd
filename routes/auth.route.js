@@ -31,6 +31,6 @@ validationResultExpress,
 login)
 
 
-router.get('/protected', requireToken, infoUser)
+router.get('/protected', requireToken, infoUser);
 
 export default router;
