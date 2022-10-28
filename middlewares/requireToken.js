@@ -8,9 +8,9 @@ export const requireToken = (req, res, next) => {
         if (!token) throw new Error('no existe token')
 
         token = token.split(" ")[1];
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        const {uid} = jwt.verify(token, process.env.JWT_SECRET);
 
-
+        req.uid = uid;
         next();
     } catch(error) {
         console.log(error);
