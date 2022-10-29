@@ -1,6 +1,6 @@
 import { User } from '../models/User.js';
 import jwt from 'jsonwebtoken';
-import { generateToken } from '../utils/tokenManager.js';
+import { generateRefreshToken, generateToken } from '../utils/tokenManager.js';
 
 
 export const register = async (req, res) => {
@@ -35,10 +35,14 @@ export const login = async (req, res) => {
         //generar token jwt
         const {token, expiresIn} = generateToken( user.id)
 
+        //COOKIE PARSER
+        
+        generateRefreshToken(user.id, res)
+
         res.json({ token, expiresIn })
     } catch(error) {
         console.log(error);
-
+        return res.status(500).json({ error: 'error de servidor'})
     }
 
 }
@@ -52,4 +56,23 @@ export const infoUser = async (req, res) => {
         return res.status(500).json({ error: 'error de servidor'})
     }
     
+}
+
+export const refreshToken = (req, res) => {
+
+    
+
+    try {
+
+        const refreshTokenCookie = req.cookies.refreshToken;
+        if (!refreshTokenCookie) throw new Error('no existe token')
+
+        const {uid} = jwt.verify(refreshTokenCookie, process.env.JWT_REFRESH);
+        const {token, expiresIn} = generateToken(uid);
+
+        res.json({ token, expiresIn })
+    } catch(error) {
+        console.log(error);
+        return res.status(401).json({ error: error.message})
+    }
 }
