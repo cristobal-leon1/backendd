@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+    </head>
+    <body>
+        <form id="form">
+            <input type="email" value="pr1sd23@admin.cl" id="email">
+            <input type="password" value="123asd13" id="password">
+            <button type="submit">Acceder</button>
+        </form>
+
+        <script>
+            const form = document.getElementById('form')
+            const email = document.getElementById('email')
+            const password = document.getElementById('password')
+
+            form.addEventListener('submit', async e => {
+                e.preventDefault()
+                try {
+                    console.log(email.value)
+                    console.log(password.value)
+                    
+                } catch(error) {
+                    console.log(error)
+                }
+            })
+
+        </script>
+    </body>
+</html>
