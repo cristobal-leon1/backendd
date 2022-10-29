@@ -76,3 +76,9 @@ export const refreshToken = (req, res) => {
         return res.status(401).json({ error: error.message})
     }
 }
+
+export const logout = (req, res) => {
+    res.clearCookie('refreshToken');
+    res.json({ ok: true})
+    
+}
