@@ -64,21 +64,18 @@ export const refreshToken = (req, res) => {
 
     try {
 
-        const refreshTokenCookie = req.cookies.refreshToken;
-        if (!refreshTokenCookie) throw new Error('no existe token')
+        
+        const {token, expiresIn} = generateToken(req.uid);
 
-        const {uid} = jwt.verify(refreshTokenCookie, process.env.JWT_REFRESH);
-        const {token, expiresIn} = generateToken(uid);
-
-        res.json({ token, expiresIn })
+        return res.json({ token, expiresIn })
     } catch(error) {
         console.log(error);
-        return res.status(401).json({ error: error.message})
+        return res.status(500).json({ error: 'error de servidor'})
     }
 }
 
 export const logout = (req, res) => {
     res.clearCookie('refreshToken');
     res.json({ ok: true})
-    
+
 }

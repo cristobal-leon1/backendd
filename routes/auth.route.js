@@ -4,6 +4,7 @@ const router = Router();
 import { body } from 'express-validator';
 import { validationResultExpress } from '../middlewares/validationResultExpress.js';
 import { requireToken } from '../middlewares/requireToken.js';
+import { requireRefreshToken } from '../middlewares/requireRefreshToken.js';
 
 router.post('/register', [
     body('email', 'Formato de email incorrecto')
@@ -32,7 +33,7 @@ login)
 
 
 router.get('/protected', requireToken, infoUser);
-router.get('/refresh', refreshToken);
+router.get('/refresh', requireRefreshToken ,refreshToken);
 router.get('/logout', logout);
 
 export default router;
