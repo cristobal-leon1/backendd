@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { getLinks } from "../controllers/link.controller.js";
+import { createLink, getLinks } from "../controllers/link.controller.js";
+import { requireToken } from "../middlewares/requireToken.js";
 
 const router = Router();
 
@@ -10,6 +11,8 @@ const router = Router();
 // PATCH/PUT        /api/v1/links/:id       update link
 // DELETE           /api/v1/links/:id       remove link
 
-router.get("/", getLinks);
+router.get("/", requireToken, getLinks);
+
+router.post("/", requireToken, createLink)
 
 export default router;
