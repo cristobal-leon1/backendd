@@ -1,4 +1,5 @@
-import { validationResult, body } from 'express-validator';
+import { validationResult, body, param } from 'express-validator';
+import axios from "axios";
 
 export const validationResultExpress = (req, res, next) => {
     const errors = validationResult(req)
@@ -17,4 +18,31 @@ export const bodyValidator = [
         .trim()
         .isLength({ min: 6 }),
     validationResultExpress
-]
+];
+
+export const bodyLinkValidator = [
+    body("longLink", "formato link incorrecto")
+        .trim()
+        .notEmpty()
+        .custom(async (value) => {
+            try {
+                if (!value.startsWith("https://")) {
+                    value = "https://" + value;
+                }
+                await axios.get(value);
+                return value;
+            } catch (error) {
+                // console.log(error);
+                throw new Error("not found longlink 404");
+            }
+        }),
+    validationResultExpress,
+];
+
+export const paramLinkValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
