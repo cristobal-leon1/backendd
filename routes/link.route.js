@@ -6,19 +6,20 @@ import { bodyLinkValidator, paramLinkValidator } from "../middlewares/validatorM
 const router = Router();
 
 
-// GET              /api/v1/links           all links
+// GET              /api/v1/links                   all links
 // GET              /api/v1/links/:nanoLink       single link
-// POST             /api/v1/links           create link
+// POST             /api/v1/links                 create link
 // PATCH/PUT        /api/v1/links/:nanoLink       update link
 // DELETE           /api/v1/links/:nanoLink       remove link
 
 router.get("/", requireToken, getLinks);
-router.get("/:nanoLink", requireToken ,getLink);
-router.post("/", requireToken, bodyLinkValidator,createLink)
-router.delete("/:nanoLink", requireToken, removeLink);
+router.get("/:nanoLink", getLink);
+router.post("/", requireToken, bodyLinkValidator, createLink);
+router.delete("/:id", requireToken, paramLinkValidator, removeLink);
 router.patch(
-    "/:nanoLink",
+    "/:id",
     requireToken,
+    paramLinkValidator,
     bodyLinkValidator,
     updateLink
 );

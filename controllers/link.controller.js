@@ -40,7 +40,7 @@ export const getLink = async (req, res) => {
 
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
-        if(!link.uid.equals(req.uid)) return res.status(401).json({ error: "error en las credenciales"})
+        //if(!link.uid.equals(req.uid)) return res.status(401).json({ error: "error en las credenciales"})
 
 
         return res.json({ longLink: link.longLink });
@@ -55,8 +55,8 @@ export const getLink = async (req, res) => {
 
 export const removeLink = async (req, res) => {
     try {
-        const { nanoLink } = req.params;
-        const link = await Link.findOne({ nanoLink });
+        const { id } = req.params;
+        const link = await Link.findById(id);
 
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
@@ -77,7 +77,7 @@ export const removeLink = async (req, res) => {
 
 export const updateLink = async (req, res) => {
     try {
-        const { nanoLink } = req.params;
+        const { id } = req.params;
         const { longLink } = req.body;
 
         console.log(longLink);
@@ -86,12 +86,12 @@ export const updateLink = async (req, res) => {
             longLink = "https://" + longLink;
         }
 
-        const link = await Link.findOne({ nanoLink });
+        const link = await Link.findById(id);
 
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
         if (!link.uid.equals(req.uid))
-            return res.status(401).json({ error: "No le pertenece ese nanoLink 🤡" });
+            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
 
         // actualizar: https://mongoosejs.com/docs/api.html#document_Document-save
         link.longLink = longLink;
