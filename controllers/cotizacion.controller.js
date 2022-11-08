@@ -102,7 +102,6 @@ export const updateCotizacion = async (req, res) => {
         if(num_credito) cotizacion.num_credito = num_credito;
         if(nva_factura) cotizacion.nva_factura = nva_factura;
 
-
         await cotizacion.save();
 
         return res.json({ cotizacion });
