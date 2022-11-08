@@ -6,12 +6,27 @@ import cookieParser from 'cookie-parser';
 import linkRouter from './routes/link.route.js';
 import redirectRouter from './routes/redirect.route.js';
 import cotizacionRouter from './routes/cotizacion.route.js';
-
+import cors from "cors";
 
 const app = express();
 
 const whiteList = [process.env.ORIGIN1];
    
+
+app.use(
+  cors({
+      origin: function (origin, callback) {
+          console.log("😲😲😲 =>", origin);
+          if (!origin || whiteList.includes(origin)) {
+              return callback(null, origin);
+          }
+          return callback(
+              "Error de CORS origin: " + origin + " No autorizado!"
+          );
+      },
+      credentials: true,
+  })
+);
 
 
 
