@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 
 const linkSchema = new Schema({
-    longLink: {
+    meb: {
         type: String,
         required: true,
         trim: true,

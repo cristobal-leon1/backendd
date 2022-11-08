@@ -5,26 +5,13 @@ import authRouter from './routes/auth.route.js'
 import cookieParser from 'cookie-parser';
 import linkRouter from './routes/link.route.js';
 import redirectRouter from './routes/redirect.route.js';
-import cors from "cors";
+import cotizacionRouter from './routes/cotizacion.route.js';
+
 
 const app = express();
 
 const whiteList = [process.env.ORIGIN1];
    
-app.use(
-  cors({
-      origin: function (origin, callback) {
-          console.log("😲😲😲 =>", origin);
-          if (!origin || whiteList.includes(origin)) {
-              return callback(null, origin);
-          }
-          return callback(
-              "Error de CORS origin: " + origin + " No autorizado!"
-          );
-      },
-      credentials: true,
-  })
-);
 
 
 
@@ -33,6 +20,7 @@ app.use(cookieParser());
 app.use("/", redirectRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/links', linkRouter);
+app.use('/api/v1/cotizaciones', cotizacionRouter);
 
 //solo pra ejemplo login/token
 //app.use(express.static('public'));
