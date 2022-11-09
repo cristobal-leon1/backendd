@@ -55,9 +55,9 @@ const cotizaSchema = new Schema({
         trim: true,
     },
     p_total_venta: { type: Number, trim: true}, // p_total_venta, entregada, entregada1,  entregada2,  guiad, factura, num_credito, nva_factura
-    entregada: { type: Date, trim: true,},
-    entregada1: { type: Date, trim: true,},
-    entregada2: { type: Date, trim: true,},
+    entregada: { type: String, trim: true,},
+    entregada1: { type: String, trim: true,},
+    entregada2: { type: String, trim: true,},
     guiad: {
         type: String,
         trim: true,
