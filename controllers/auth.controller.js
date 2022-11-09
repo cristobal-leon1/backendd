@@ -66,7 +66,6 @@ export const refreshToken = (req, res) => {
 
     try {
 
-        
         const {token, expiresIn} = generateToken(req.uid);
 
         return res.json({ token, expiresIn })
