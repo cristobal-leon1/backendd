@@ -3,9 +3,9 @@ import { generateRefreshToken, generateToken } from '../utils/tokenManager.js';
 
 
 export const register = async (req, res) => {
-    const {email, password} = req.body;
+    const {email, nombre, password} = req.body;
     try {
-        const user = new User( {email, password })
+        const user = new User( {email, nombre, password })
         //let user = await User.findOne({ email })
 
         await user.save();
