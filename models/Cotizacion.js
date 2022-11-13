@@ -75,7 +75,7 @@ const cotizaSchema = new Schema({
         trim: true,
     },
     estado: {
-        type: true,
+        type: String,
         default: false
     }
 });
