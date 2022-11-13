@@ -70,7 +70,7 @@ export const removeCotizacion = async (req, res) => {
 export const updateCotizacion = async (req, res) => {
     try {
         const { meb } = req.params;
-        let {cliente, solicitante, email, fono, solicitud, marca, modelo, pn, qty, origen, iso, oc, order_confir, p_unitario_venta, p_total_venta, entregada, entregada1,  entregada2,  guiad, factura, num_credito, nva_factura} = req.body;
+        let {cliente, solicitante, email, fono, solicitud, marca, modelo, pn, qty, origen, iso, oc, order_confir, p_unitario_venta, p_total_venta, entregada, entregada1,  entregada2,  guiad, factura, num_credito, nva_factura, estado} = req.body;
 
 
 
@@ -101,6 +101,7 @@ export const updateCotizacion = async (req, res) => {
         if(factura) cotizacion.factura = factura;
         if(num_credito) cotizacion.num_credito = num_credito;
         if(nva_factura) cotizacion.nva_factura = nva_factura;
+        if(estado) cotizacion.estado = estado;
 
         await cotizacion.save();
 
