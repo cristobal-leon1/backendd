@@ -75,9 +75,10 @@ const cotizaSchema = new Schema({
         trim: true,
     },
     estado: {
-        type: String,
+        type: String, 
         default: false
     }
 });
+//modificado
 
 export const Cotizacion = model('Cotizacion', cotizaSchema);
