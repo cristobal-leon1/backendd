@@ -76,7 +76,7 @@ const cotizaSchema = new Schema({
     },
     estado: {
         type: String, 
-        default: false
+        default: "procesando"
     }
 });
 //modificado
