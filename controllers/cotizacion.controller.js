@@ -4,7 +4,7 @@ import { Cotizacion } from "../models/Cotizacion.js";
 export const getCotizaciones = async (req, res) => {
     try {
 
-        const cotizaciones = await Cotizacion.find();
+        const cotizaciones = await Cotizacion.find().sort('-fecha');
 
 
         return res.json({ cotizaciones });
