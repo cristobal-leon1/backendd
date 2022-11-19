@@ -31,7 +31,7 @@ export const createCotizacion = async (req, res) => {
 export const getCotizacion = async (req, res) => {
     try {
         const { meb } = req.params;
-        const cotizacion = await Cotizacion.findOne({ meb });
+        const cotizacion = await Cotizacion.find({ meb });
 
         if (!cotizacion) return res.status(404).json({ error: "No existe la cotizacion" });
 
