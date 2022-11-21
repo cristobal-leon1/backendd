@@ -4,12 +4,10 @@ const cotizaSchema = new Schema({
     meb: { type: Number, required: true, trim: true, unique: true,},
     cliente: {
         type: String,
-        required: true,
         trim: true,
     },
     solicitante: {
         type: String,
-        required: true,
         trim: true,
     },
     email: {
