@@ -36,8 +36,8 @@ export const getCotizacion = async (req, res) => {
 
         // get clientes sin repetir
         if (cliente == 'b8385723a96a6b838858cdd6ca0a1e') {
-            const cotizaciones = await Cotizacion.distinct('cliente')
-            return res.json({ cotizaciones });
+            const clientes = await Cotizacion.distinct('cliente')
+            return res.json({ clientes });
 
         } 
         //if (!cotizacion) return res.status(404).json({ error: "No existe la cotizacion" });
