@@ -13,7 +13,7 @@ const router = Router();
 
 router.get("/", requireToken, getCotizaciones);
 router.get("/:cliente",requireToken, getCotizacion);
-//router.get("/:meb",requireToken, getCotizacion);
+//router.get('/holi',requireToken, getHistorialClientes);
 router.post("/", requireToken, createCotizacion);
 router.delete("/:meb", requireToken, removeCotizacion);
 router.patch(
