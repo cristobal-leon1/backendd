@@ -12,7 +12,8 @@ const router = Router();
 // DELETE           /api/v1/links/:nanoLink       remove link
 
 router.get("/", requireToken, getCotizaciones);
-router.get("/:meb",requireToken, getCotizacion);
+router.get("/:cliente",requireToken, getCotizacion);
+//router.get("/:meb",requireToken, getCotizacion);
 router.post("/", requireToken, createCotizacion);
 router.delete("/:meb", requireToken, removeCotizacion);
 router.patch(
