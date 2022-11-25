@@ -45,7 +45,7 @@ export const getCotizacion = async (req, res) => {
         //if(!link.uid.equals(req.uid)) return res.status(401).json({ error: "error en las credenciales"})
 
 
-        return res.json({ cotizacion });
+        return res.json({ "cotizaciones": cotizacion });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {
